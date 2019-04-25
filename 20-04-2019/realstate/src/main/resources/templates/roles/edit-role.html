@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+            <!--inner block start here-->
+            <div class="inner-block min-height" layout:fragment="custom-content">
+                <h1>Update Role</h1>
+                <span th:class="succes" th:text="${rejectMsg}"></span>
+                <form th:object="${role}" th:action="@{/role/edit-role/}+${id}" th:method="POST">
+                    <div class="form-group">
+                        <label for="rolename">Role Name:</label>
+                        <input type="text" th:value="${role.roleName}" th:field="*{roleName}" class="form-control" id="rolename">
+                        <span th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}">Rolename Error</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+            <!--inner block end here-->
+</body>
+</html>

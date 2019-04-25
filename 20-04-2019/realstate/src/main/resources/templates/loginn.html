@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Find Home Inc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="findhome"/>
+
+
+
+    <!--<link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css}" rel="stylesheet" media="all"/>-->
+
+
+    <link th:href="@{/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/ionicons/css/ionicons.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700}" rel="stylesheet">
+    <link th:href="@{/img/favicon.png}" rel="icon" type="image/x-icon">
+    <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon" type="image/x-icon">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+    <style type="text/css">
+        :root {
+            --input-padding-x: 1.5rem;
+            --input-padding-y: .75rem;
+        }
+        .card-signin {
+            border: 0;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .card-signin .card-title {
+            margin-bottom: 2rem;
+            font-weight: 300;
+            font-size: 1.5rem;
+        }
+
+        .card-signin .card-body {
+            padding: 2rem;
+        }
+
+        .form-signin {
+            width: 100%;
+        }
+
+        .form-signin .btn {
+            font-size: 80%;
+            border-radius: 5rem;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-label-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .form-label-group input {
+            height: auto;
+            border-radius: 2rem;
+        }
+
+        .form-label-group > input,
+        .form-label-group > label {
+            padding: var(--input-padding-y) var(--input-padding-x);
+        }
+
+        .form-label-group > label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            margin-bottom: 0;
+            /* Override default `<label>` margin */
+            line-height: 1.5;
+            color: #495057;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+            transition: all .1s ease-in-out;
+        }
+
+        .form-label-group input::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input::-ms-input-placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input::-moz-placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input::placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input:not(:placeholder-shown) {
+            padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+            padding-bottom: calc(var(--input-padding-y) / 3);
+        }
+
+        .form-label-group input:not(:placeholder-shown) ~ label {
+            padding-top: calc(var(--input-padding-y) / 3);
+            padding-bottom: calc(var(--input-padding-y) / 3);
+            font-size: 12px;
+            color: #777;
+        }
+
+        .btn-google {
+            color: white;
+            background-color: #ea4335;
+        }
+
+        .btn-facebook {
+            color: white;
+            background-color: #3b5998;
+        }
+
+        .err {
+            color: red;
+        }
+
+        .logout {
+            color: darkgreen;
+        }
+
+        /*grid list view css*/
+        .glyphicon { margin-right:5px; }
+        .thumbnail
+        {
+            margin-bottom: 20px;
+            padding: 0px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+        }
+
+        .item.list-group-item
+        {
+            float: none;
+            width: 100%;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+        .item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
+        {
+            background: #428bca;
+        }
+
+        .item.list-group-item .list-group-image
+        {
+            margin-right: 10px;
+        }
+        .item.list-group-item .thumbnail
+        {
+            margin-bottom: 0px;
+        }
+        .item.list-group-item .caption
+        {
+            padding: 9px 9px 0px 9px;
+        }
+        .item.list-group-item:nth-of-type(odd)
+        {
+            background: #eeeeee;
+        }
+
+        .item.list-group-item:before, .item.list-group-item:after
+        {
+            display: table;
+            content: " ";
+        }
+
+        .item.list-group-item img
+        {
+            float: left;
+        }
+        .item.list-group-item:after
+        {
+            clear: both;
+        }
+        .list-group-item-text
+        {
+            margin: 0 0 11px;
+        }
+    </style>
+
+
+
+
+    <!-- =======================================================
+      Theme Name: EstateAgency
+      Theme URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
+      Author: BootstrapMade.com
+      License: https://bootstrapmade.com/license/
+    ======================================================= -->
+</head>
+
+<body>
+
+<div class="click-closed"></div>
+<!--/ Form Search Star /-->
+<div class="box-collapse">
+    <div class="title-box-d">
+        <h3 class="title-d">Search Property</h3>
+    </div>
+    <span class="close-box-collapse right-boxed ion-ios-close"></span>
+    <div class="box-collapse-wrap form">
+        <form class="form-a">
+            <div class="row">
+                <div class="col-md-12 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Keyword</label>
+                        <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="Type">Type</label>
+                        <select class="form-control form-control-lg form-control-a" id="Type">
+                            <option>All Type</option>
+                            <option>For Rent</option>
+                            <option>For Sale</option>
+                            <option>Open House</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <select class="form-control form-control-lg form-control-a" id="city">
+                            <option>All City</option>
+                            <option>Alabama</option>
+                            <option>Arizona</option>
+                            <option>California</option>
+                            <option>Colorado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <select class="form-control form-control-lg form-control-a" id="bedrooms">
+                            <option>Any</option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="garages">Garages</label>
+                        <select class="form-control form-control-lg form-control-a" id="garages">
+                            <option>Any</option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="bathrooms">Bathrooms</label>
+                        <select class="form-control form-control-lg form-control-a" id="bathrooms">
+                            <option>Any</option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <label for="price">Min Price</label>
+                        <select class="form-control form-control-lg form-control-a" id="price">
+                            <option>Unlimite</option>
+                            <option>$50,000</option>
+                            <option>$100,000</option>
+                            <option>$150,000</option>
+                            <option>$200,000</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-b">Search Property</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--/ Form Search End /-->
+
+<!--/ Nav Star /-->
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+    <div class="container">
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+                aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a class="navbar-brand text-brand" href="index.html">Find<span class="color-b">Home</span></a>
+        <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
+                data-target="#navbarTogglerDemo01" aria-expanded="false">
+            <span class="fa fa-search" aria-hidden="true"></span>
+        </button>
+        <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="property-grid.html">Property</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse"
+                data-target="#navbarTogglerDemo01" aria-expanded="false">
+            <span class="fa fa-search" aria-hidden="true"></span>
+        </button>
+    </div>
+</nav>
+<!--/ Nav End /-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center"><i class="fa fa-sign-in fa-3x"></i></h5>
+                    <h5>
+                    <span class="err" th:if="${param.error}">
+                        Invalid username and password.
+                    </span>
+                        <span class="logout" th:if="${param.logout}">
+                        You have been logged out.
+
+                    </span>
+                        <br/>
+                    </h5>
+                    <form class="form-signin" th:action="@{/login}" method="post">
+                        <div class="form-label-group">
+                            <input type="text" th:name="username" id="inputEmail" class="form-control"
+                                   placeholder="Email address" required autofocus>
+                            <label for="inputEmail">Username Or Email</label>
+                        </div>
+
+                        <div class="form-label-group">
+                            <input type="password" name="password" id="inputPassword" class="form-control"
+                                   placeholder="Password" required>
+                            <label for="inputPassword">Password</label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Remember password</label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"><i
+                                style="font-size:24px" class="fa fa-sign-in mr-2"></i>Sign in
+                        </button>
+                        <hr class="my-4">
+                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"> Sign in with <i
+                                style="font-size:24px" class="fa fa-google mr-2"></i></button>
+                        <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit">Sign in with <i
+                                style="font-size:24px" class="fa fa-facebook mr-2"></i></button>
+                    </form>
+                    <hr class="my-4">
+                    <h6>Don't Have an Account?</h6>
+                    <a class="btn btn-lg btn-google btn-block text-uppercase" th:href="@{/sign-up}"><i
+                            style="font-size:24px" class="fa fa-user mr-2"></i> Sign Up</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--/ News Star /-->
+<section class="section-news section-t8">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title-wrap d-flex justify-content-between">
+                    <div class="title-box">
+                        <h2 class="title-a">Latest News</h2>
+                    </div>
+                    <div class="title-link">
+                        <a href="blog-grid.html">All News
+                            <span class="ion-ios-arrow-forward"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new-carousel" class="owl-carousel owl-theme">
+            <div class="carousel-item-c">
+                <div class="card-box-b card-shadow news-box">
+                    <div class="img-box-b">
+                        <img src="img/post-2.jpg" alt="" class="img-b img-fluid">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-header-b">
+                            <div class="card-category-b">
+                                <a href="#" class="category-b">House</a>
+                            </div>
+                            <div class="card-title-b">
+                                <h2 class="title-2">
+                                    <a href="blog-single.html">House is comming
+                                        <br> new</a>
+                                </h2>
+                            </div>
+                            <div class="card-date">
+                                <span class="date-b">18 Sep. 2017</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item-c">
+                <div class="card-box-b card-shadow news-box">
+                    <div class="img-box-b">
+                        <img src="img/post-5.jpg" alt="" class="img-b img-fluid">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-header-b">
+                            <div class="card-category-b">
+                                <a href="#" class="category-b">Travel</a>
+                            </div>
+                            <div class="card-title-b">
+                                <h2 class="title-2">
+                                    <a href="blog-single.html">Travel is comming
+                                        <br> new</a>
+                                </h2>
+                            </div>
+                            <div class="card-date">
+                                <span class="date-b">18 Sep. 2017</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item-c">
+                <div class="card-box-b card-shadow news-box">
+                    <div class="img-box-b">
+                        <img src="img/post-7.jpg" alt="" class="img-b img-fluid">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-header-b">
+                            <div class="card-category-b">
+                                <a href="#" class="category-b">Park</a>
+                            </div>
+                            <div class="card-title-b">
+                                <h2 class="title-2">
+                                    <a href="blog-single.html">Park is comming
+                                        <br> new</a>
+                                </h2>
+                            </div>
+                            <div class="card-date">
+                                <span class="date-b">18 Sep. 2017</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item-c">
+                <div class="card-box-b card-shadow news-box">
+                    <div class="img-box-b">
+                        <img src="img/post-3.jpg" alt="" class="img-b img-fluid">
+                    </div>
+                    <div class="card-overlay">
+                        <div class="card-header-b">
+                            <div class="card-category-b">
+                                <a href="#" class="category-b">Travel</a>
+                            </div>
+                            <div class="card-title-b">
+                                <h2 class="title-2">
+                                    <a href="#">Travel is comming
+                                        <br> new</a>
+                                </h2>
+                            </div>
+                            <div class="card-date">
+                                <span class="date-b">18 Sep. 2017</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ News End /-->
+
+<!--/ Admin Log in strat /-->
+<section class="section-login">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"><i class="fa fa-sign-in fa-3x"></i></h5>
+                        <h5>
+                            <span class="err" th:if="${param.error}">Invalid username and password.</span>
+                            <span class="logout" th:if="${param.logout}">You have been logged out.</span>
+                            <br/>
+                        </h5>
+                        <form class="form-signin" th:action="@{/login}"  method="post">
+                            <div class="form-label-group">
+                                <input type="text" th:name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                <label for="inputEmail">Username Or Email</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <label for="inputPassword">Password</label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Remember password</label>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"><i style="font-size:24px" class="fa fa-sign-in mr-2"></i>Sign in</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--/ footer Start /-->
+<section class="section-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="widget-a">
+                    <div class="w-header-a">
+                        <h3 class="w-title-a text-brand">FindHome</h3>
+                    </div>
+                    <div class="w-body-a">
+                        <p class="w-text-a color-text-a">
+                            Enim minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip exea commodo consequat duis
+                            sed aute irure.
+                        </p>
+                    </div>
+                    <div class="w-footer-a">
+                        <ul class="list-unstyled">
+                            <li class="color-a">
+                                <span class="color-text-a">Phone .</span> contact@example.com</li>
+                            <li class="color-a">
+                                <span class="color-text-a">Email .</span> +54 356 945234</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 section-md-t3">
+                <div class="widget-a">
+                    <div class="w-header-a">
+                        <h3 class="w-title-a text-brand">The Company</h3>
+                    </div>
+                    <div class="w-body-a">
+                        <div class="w-body-a">
+                            <ul class="list-unstyled">
+                                <li class="item-list-a">
+                                    <i class="fa fa-angle-right"></i> <a href="#">Site Map</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="fa fa-angle-right"></i> <a href="#">Legal</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="fa fa-angle-right"></i> <a href="#">Agent Admin</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="fa fa-angle-right"></i> <a href="#">Careers</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="fa fa-angle-right"></i> <a href="#">Affiliate</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="fa fa-angle-right"></i> <a href="#">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 section-md-t3">
+                <div class="widget-a">
+                    <div class="w-header-a">
+                        <h3 class="w-title-a text-brand">International sites</h3>
+                    </div>
+                    <div class="w-body-a">
+                        <ul class="list-unstyled">
+                            <li class="item-list-a">
+                                <i class="fa fa-angle-right"></i> <a href="#">Venezuela</a>
+                            </li>
+                            <li class="item-list-a">
+                                <i class="fa fa-angle-right"></i> <a href="#">China</a>
+                            </li>
+                            <li class="item-list-a">
+                                <i class="fa fa-angle-right"></i> <a href="#">Hong Kong</a>
+                            </li>
+                            <li class="item-list-a">
+                                <i class="fa fa-angle-right"></i> <a href="#">Argentina</a>
+                            </li>
+                            <li class="item-list-a">
+                                <i class="fa fa-angle-right"></i> <a href="#">Singapore</a>
+                            </li>
+                            <li class="item-list-a">
+                                <i class="fa fa-angle-right"></i> <a href="#">Philippines</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="nav-footer">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Property</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Blog</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="socials-a">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fa fa-dribbble" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--/ Footer End /-->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<div id="preloader"></div>
+
+<!-- JavaScript Libraries -->
+<script th:src="@{/lib/jquery/jquery.min.js}"></script>
+<script th:src="@{/lib/jquery/jquery-migrate.min.js}"></script>
+<script th:src="@{/lib/popper/popper.min.js}"></script>
+<script th:src="@{/lib/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+<script th:src="@{/lib/scrollreveal/scrollreveal.min.js}"></script>
+<!-- Contact Form JavaScript File -->
+<script th:src="@{/contactform/contactform.js}"></script>
+
+<!-- Template Main Javascript File -->
+<script th:src="@{/js/main.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#list').click(function (event) {
+            event.preventDefault();
+            $('#products .item').addClass('list-group-item');
+        });
+        $('#grid').click(function (event) {
+            event.preventDefault();
+            $('#products .item').removeClass('list-group-item');
+            $('#products .item').addClass('grid-group-item');
+        });
+    });
+</script>
+</body>
+</html>

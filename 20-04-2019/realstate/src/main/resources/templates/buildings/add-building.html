@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Buildings</title>
+</head>
+<body>
+<div class="content" layout:fragment="custom-content">
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Building</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Building</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Add</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Add Building</div>
+                    </div>
+                    <span th:class="succes" th:text="${successMsg}"></span>
+                    <form th:object="${building}" th:action="@{/building/add-building}" th:method="POST" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="buildingName">Building Name: </label>
+                                        <input type="text" class="form-control" id="buildingName"
+                                               th:field="*{buildingName}" placeholder="Enter buildingName">
+                                        <small id="buildingNameHelp" class="form-text text-muted">Enter buildingName At least 4
+                                            Characters.
+                                        </small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('buildingName')}"
+                                              th:errors="*{buildingName}">buildingName Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <select th:field="*{cities}" id="city" class="form-control">
+                                            <option th:each="c : ${cities}" th:value="${c.id}">
+                                                <span th:text="${c.cityName}"></span>
+                                            </option>
+                                        </select>
+                                        <small id="areacityHelp" class="form-text text-muted">Please select a city.
+                                        </small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('cities')}"
+                                              th:errors="*{cities}">City Name Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="area">Area: </label>
+                                        <select th:field="*{areas}" id="area" class="form-control">
+                                            <option th:each="a : ${areas}" th:value="${a.id}">
+                                                <span th:text="${a.areaName}"></span>
+                                            </option>
+                                        </select>
+                                        <small id="areanameHelp" class="form-text text-muted">Please select an area.
+                                        </small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('areas')}"
+                                              th:errors="*{areas}">Area Name Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="housing">Housing: </label>
+                                        <select th:field="*{housings}" id="housing" class="form-control">
+                                            <option th:each="h : ${housings}" th:value="${h.id}">
+                                                <span th:text="${h.housingName}"></span>
+                                            </option>
+                                        </select>
+                                        <small id="housingNameHelp" class="form-text text-muted">Please select an Housing Area.
+                                        </small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('housings')}"
+                                              th:errors="*{housings}">Housing Name Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="catagory">Catagory Type: </label>
+                                        <select th:field="*{catagories}" id="catagory" class="form-control">
+                                        <option th:each="ct : ${catagories}" th:value="${ct.id}">
+                                        <span th:text="${ct.catagoryName}"></span>
+                                        </option>
+                                        </select>
+                                        <small id="catagoryNameHelp" class="form-text text-muted">Please select a Catagory.
+                                        </small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('catagories')}"
+                                        th:errors="*{catagories}">Catagory Name Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="availfor">Available For: </label>
+                                        <select th:field="*{availableFor}" id="availfor" class="form-control">
+                                            <option th:each="av : ${availability}" th:value="${av.id}">
+                                                <span th:text="${av.availName}"></span>
+                                            </option>
+                                        </select>
+                                        <small class="form-text text-muted">Please select an option.
+                                        </small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('availableFor')}"
+                                              th:errors="*{availableFor}">Catagory Name Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="constructiontype">Construction Type: </label>
+                                        <select th:field="*{constructionType}" id="constructiontype" class="form-control">
+                                            <option th:each="a : ${constructiontypes}" th:value="${a.id}">
+                                                <span th:text="${a.constTypeName}"></span>
+                                            </option>
+                                        </select>
+                                        <small class="form-text text-muted">Please select a Construction Type.
+                                        </small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('constructionType')}"
+                                              th:errors="*{constructionType}">constructionType Name Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="flatsize">Size: </label>
+                                        <input type="text" class="form-control" id="flatsize"
+                                               th:field="*{flatSize}" placeholder="Enter building size as square feet">
+                                        <small id="sizeHelp" class="form-text text-muted">Enter building size</small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('flatSize')}"
+                                              th:errors="*{flatSize}">Size Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="price">Price: </label>
+                                        <input type="text" class="form-control" id="price"
+                                               th:field="*{price}" placeholder="Enter Sell price per square feet">
+                                        <small id="priceHelp" class="form-text text-muted">Enter Price per sqft</small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('price')}"
+                                              th:errors="*{price}">Price Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="bedroom">Bed Rooms: </label>
+                                        <input type="text" class="form-control" id="bedroom"
+                                               th:field="*{bedRooms}" placeholder="Enter number of bed rooms">
+                                        <small id="roomHelp" class="form-text text-muted">Enter number of bed rooms</small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('bedRooms')}"
+                                              th:errors="*{bedRooms}">bed Rooms Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="baths">Baths: </label>
+                                        <input type="text" class="form-control" id="baths"
+                                               th:field="*{bathRooms}" placeholder="Enter number of Baths">
+                                        <small id="bathHelp" class="form-text text-muted">Enter number of baths</small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('bathRooms')}"
+                                              th:errors="*{bathRooms}">bath Rooms Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="address">Street Address: </label>
+                                        <textarea type="text" class="form-control" id="address"
+                                                  th:field="*{streetAddress}" placeholder="Enter street Address"></textarea>
+                                        <span th:class="error" th:if="${#fields.hasErrors('streetAddress')}"
+                                              th:errors="*{streetAddress}">street Address Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="details">Other Details: </label>
+                                        <textarea type="text" class="form-control" id="details"
+                                                  th:field="*{otherDetailing}" placeholder="Enter other Detailing"></textarea>
+                                        <span th:class="error" th:if="${#fields.hasErrors('otherDetailing')}"
+                                              th:errors="*{otherDetailing}">other Detailing error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="builtindate">BuiltIn Date: </label>
+                                        <input type="date" class="form-control" id="builtindate"
+                                                  th:field="*{builtInDate}"/>
+                                        <small id="builtindateHelp" class="form-text text-muted">Enter Building's built in date</small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('builtInDate')}"
+                                              th:errors="*{builtInDate}">Builtin date Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-6 col-lg-4">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="regidate">Registration Date: </label>-->
+                                        <!--<input type="date" class="form-control" id="regidate"-->
+                                               <!--th:field="*{registrationDate}"/>-->
+                                        <!--<small id="regidateHelp" class="form-text text-muted">Enter Building's Registration date</small>-->
+                                        <!--<span th:class="error" th:if="${#fields.hasErrors('registrationDate')}"-->
+                                              <!--th:errors="*{registrationDate}">Builtin date Error</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="image">Upload Image: </label>
+                                        <input type="file" class="form-control" id="image" name="file" />
+                                        <small id="imageHelp" class="form-text text-muted">Enter Building's Image</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-danger">Cancel</button>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--inner block end here-->
+</body>
+</html>

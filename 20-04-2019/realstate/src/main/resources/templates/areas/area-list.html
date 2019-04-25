@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script>
+        $.noConflict();
+        $(document).ready(function() {
+            $('#basic-datatables').DataTable({});
+        });
+
+
+    </script>
+</head>
+<body>
+<div class="content" layout:fragment="custom-content">
+
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Areas</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Area</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">List</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Area List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>SL. No</th>
+                                    <th>Area Name</th>
+                                    <th>City</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="area : ${list}">
+                                    <td th:text="${area.id}"></td>
+                                    <td th:text="${area.areaName}"></td>
+                                    <td th:each="city : ${area.cities}">
+                                        <span th:text="${city.cityName}"></span>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{'/area/delete-area/'+${area.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>SL. No</th>
+                                    <th>Area Name</th>
+                                    <th>City</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--inner block end here-->
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Building List</title>
+    <script>
+        $.noConflict();
+        $(document).ready(function () {
+            $('#basic-datatables').DataTable({});
+        });
+    </script>
+</head>
+<body>
+<div class="content" layout:fragment="custom-content">
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Buildings</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Building</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">List</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Building List</h4>
+                        <a th:href="@{'/building/report'}" target="_blank">View Building List</a>
+                        <a th:href="@{'/building/pdf'}" target="_blank">Download Building List</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Building Name</th>
+                                    <th>Street Adress</th>
+                                    <th>Housing</th>
+                                    <th>Area</th>
+                                    <th>City</th>
+                                    <th>Flat Size</th>
+                                    <th>BedRoom</th>
+                                    <th>Baths</th>
+                                    <th>Construction Type</th>
+                                    <th>Catagory</th>
+                                    <th>Availablefor</th>
+                                    <th>Built In date</th>
+                                    <th>Other Features</th>
+                                    <th>Other Details</th>
+                                    <th>Registration date</th>
+                                    <th>Price</th>
+                                    <th>Image</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="buildings : ${list}">
+                                    <td th:text="${buildings.buildingName}"></td>
+                                    <td th:text="${buildings.streetAddress}"></td>
+                                    <td th:each="housing : ${buildings.housings}">
+                                        <span th:text="${housing.housingName}"></span>
+                                    </td>
+                                    <td th:each="area : ${buildings.areas}">
+                                        <span th:text="${area.areaName}"></span>
+                                    </td>
+                                    <td th:each="city : ${buildings.cities}">
+                                        <span th:text="${city.cityName}"></span>
+                                    </td>
+                                    <td th:text="${buildings.flatSize}"></td>
+                                    <td th:text="${buildings.bedRooms}"></td>
+                                    <td th:text="${buildings.bathRooms}"></td>
+                                    <td th:each="type : ${buildings.constructionType}">
+                                        <span th:text="${type.constTypeName}"></span>
+                                    </td>
+                                    <td th:each="cat : ${buildings.catagories}">
+                                        <span th:text="${cat.catagoryName}"></span>
+                                    </td>
+                                    <td th:each="avail : ${buildings.availableFor}">
+                                        <span th:text="${avail.availName}"></span>
+                                    </td>
+                                    <td th:text="${buildings.builtInDate}"></td>
+                                    <td th:text="${buildings.otherFeatures}"></td>
+                                    <td th:text="${buildings.otherDetailing}"></td>
+                                    <td th:text="${buildings.registrationDate}"></td>
+                                    <td th:text="${buildings.price}"></td>
+                                    <td><img th:src="${buildings.getFilePath()}" width="100" height="100"/></td>
+                                    <td>
+                                        <a th:href="@{'/building/edit-building/'+${buildings.id}}"><i class="fa fa-edit"
+                                                                                                      aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{'/building/delete/'+${buildings.id}}"><i class="fa fa-trash"
+                                                                                               aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Building Name</th>
+                                    <th>Street Adress</th>
+                                    <th>Housing</th>
+                                    <th>Area</th>
+                                    <th>City</th>
+                                    <th>Flat Size</th>
+                                    <th>BedRoom</th>
+                                    <th>Baths</th>
+                                    <th>Construction Type</th>
+                                    <th>Catagory</th>
+                                    <th>Availablefor</th>
+                                    <th>Built In date</th>
+                                    <th>Other Features</th>
+                                    <th>Other Details</th>
+                                    <th>Registration date</th>
+                                    <th>Price</th>
+                                    <th>Image</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--inner block end here-->
+</body>
+</html>

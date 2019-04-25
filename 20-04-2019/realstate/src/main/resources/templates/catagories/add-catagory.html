@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Catagory</title>
+</head>
+<body>
+<div class="content" layout:fragment="custom-content">
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Catagory</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Catagory</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Add</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Add Catagory</div>
+                    </div>
+                    <span th:class="succes" th:text="${successMsg}"></span>
+                    <span th:class="err" th:text="${rejectMsg}"></span>
+                    <form th:object="${catagory}" th:action="@{/catagory/add-catagory}" th:method="POST">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="cityname">Catagory</label>
+                                        <input type="text" class="form-control" id="cityname"
+                                              th:field="*{catagoryName}" placeholder="Enter Catagory">
+                                        <small id="rolenameHelp" class="form-text text-muted">Enter Catagory At least 4
+                                            Characters.
+                                        </small>
+                                        <span th:class="error" th:if="${#fields.hasErrors('catagoryName')}"
+                                              th:errors="*{catagoryName}">CatagoryName Error</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-danger">Cancel</button>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--inner block end here-->
+</body>
+</html>

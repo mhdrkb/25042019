@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>FindHome Inc</title>
+    <!--<script>-->
+    <!--$.noConflict();-->
+    <!--$(document).ready(function () {-->
+    <!--$('#basic-datatables').DataTable({});-->
+    <!--});-->
+    <!--</script>-->
+</head>
+<body>
+<div class="content" layout:fragment="custom-content">
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Buildings</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Building</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">List</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="well well-sm">
+                            <div class="btn-group">
+                                <a href="#" id="list" class="btn btn-default btn-sm"><span
+                                        class="glyphicon glyphicon-th-list"></span>List</a>
+                                <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                                        class="glyphicon glyphicon-th"></span>Grid</a>
+                            </div>
+                        </div>
+                        <div class="container">
+                        <div id="products" class="row">
+                            <div class="item  col-xs-4 col-lg-4" th:each="b : ${list} ">
+                                <div class="thumbnail">
+                                    <a th:href="@{'/building/edit-building/'+${b.id}}"><img class="group list-group-image" th:src="${b.filePath}"
+                                         alt=""/></a> <!--more images goes here-->
+                                    <div class="caption">
+                                        <h4 class="group inner list-group-item-heading" th:text="${b.buildingName}">
+                                        </h4>
+                                        <p class="group inner list-group-item-text" th:text="${b.streetAddress}">
+                                          </p>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-6">
+                                                <p class="lead" th:text="${b.price}">
+                                                    </p>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                <a class="btn btn-success" th:href="@{'/building/edit-building/'+${b.id}}">See More Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--inner block end here-->
+<script>
+    $(document).ready(function () {
+        $('#list').click(function (event) {
+            event.preventDefault();
+            $('#products .item').addClass('list-group-item');
+        });
+        $('#grid').click(function (event) {
+            event.preventDefault();
+            $('#products .item').removeClass('list-group-item');
+            $('#products .item').addClass('grid-group-item');
+        });
+    });
+</script>
+</body>
+</html>

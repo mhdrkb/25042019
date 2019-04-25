@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Agents</title>
+</head>
+<body>
+<div class="content">
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Role</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Role</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Add</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Add Role</div>
+                    </div>
+                    <span th:class="succes" th:text="${successMsg}"></span>
+                    <span th:class="err" th:text="${rejectMsg}"></span>
+                    <form th:object="${agent}" th:action="@{/add-agent}" th:method="POST">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="rolename">AgentName</label>
+                                        <input type="text" class="form-control" id="rolename"
+                                             th:field="*{agentName}"  placeholder="Enter Rolename">
+                                        <small id="rolenameHelp" class="form-text text-muted">Enter Role At least 4
+                                            Characters.
+                                        </small>
+                                        <label for="rolename">Email</label>
+                                        <input type="text" class="form-control" id="email"
+                                               th:field="*{email}"  placeholder="Enter Rolename">
+                                        <small id="emailhelp" class="form-text text-muted">Enter valid email
+                                        </small>
+                                        <label for="rolename">Mobile</label>
+                                        <input type="text" class="form-control" id="mobile"
+                                               th:field="*{mobile}"  placeholder="Enter Rolename">
+                                        <small id="mobile help" class="form-text text-muted">Enter mobile
+                                        </small>
+                                        <label for="image">Upload Image: </label>
+                                        <input type="file" class="form-control" id="image" name="file" />
+                                        <small id="imageHelp" class="form-text text-muted">Enter Agent Image</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-danger">Cancel</button>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--inner block end here-->
+</body>
+</html>

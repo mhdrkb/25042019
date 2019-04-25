@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script>
+        $.noConflict();
+        $(document).ready(function() {
+            $('#basic-datatables').DataTable({});
+        });
+
+
+    </script>
+</head>
+<body>
+<div class="content" layout:fragment="custom-content">
+
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Roles</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Role</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">List</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Role List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>SL. No</th>
+                                    <th>Role Name</th>
+                                    <th>Edit</th>
+                                    <th>Del</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="role : ${list}">
+                                    <td th:text="${role.id}"></td>
+                                    <td th:text="${role.roleName}"></td>
+                                    <td>
+                                        <a th:href="@{'/role/edit-role/'+${role.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{'/role/del/'+${role.id}}"><i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>SL. No</th>
+                                    <th>Role Name</th>
+                                    <th>Edit</th>
+                                    <th>Del</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--inner block end here-->
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script>
+        $.noConflict();
+        $(document).ready(function() {
+            $('#basic-datatables').DataTable({});
+        });
+
+
+    </script>
+</head>
+<body>
+<div class="content" layout:fragment="custom-content">
+
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">Users</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="#">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">User</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="#">List</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">User List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="basic-datatables" class="display table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>UserName</th>
+                                    <th>User Email</th>
+                                    <th>User Mobile</th>
+                                    <th>Role</th>
+                                    <th>Gender</th>
+                                    <th>Image</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user : ${userlist}">
+                                    <td th:text="${user.firstName}"></td>
+                                    <td th:text="${user.lastName}"></td>
+                                    <td th:text="${user.userName}"></td>
+                                    <td th:text="${user.email}"></td>
+                                    <td th:text="${user.mobile}"></td>
+                                    <td th:each="role : ${user.roles}">
+                                        <span th:text="${role.roleName}"></span>
+                                    </td>
+                                    <td><img th:src="${user.getFilePath()}" width="100" height="100"/></td>
+                                    <td>
+                                        <a th:href="@{'/user/del/'+${user.id}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{'/user/edit/'+${user.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>UserName</th>
+                                    <th>User Email</th>
+                                    <th>User Mobile</th>
+                                    <th>Role</th>
+                                    <th>Gender</th>
+                                    <th>Image</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--inner block end here-->
+</body>
+</html>
